@@ -2,18 +2,18 @@ import React from 'react';
 import { Formik } from 'formik';
 import { useContext ,useEffect,useState} from 'react';
 import axios from 'axios';
-import { user } from '../App';
-
+import  user  from './UserContext';
+import UserContext from './UserContext';
 
 const LoginForm = () => {
     const [data, setData] = useState({})
     const [Loading, setLoading] = useState(false)
-    const {context, setContext}  = useContext(user)
+    // const {info, setinfo}  = useContext(UserContext)
     useEffect(() => {
         const fetchData = async () =>{
           setLoading(true);
           try {
-            const {data: response} = await axios.get('http://localhost:3001/users');
+            const {data: response} = await axios.get('http://localhost:3001/user');
             setData(response);
             
           } catch (error) {
@@ -26,7 +26,6 @@ const LoginForm = () => {
       useEffect(() => {
         console.log(data);
       }, [data]);
-    
     
     return(
   <div>
@@ -49,7 +48,7 @@ const LoginForm = () => {
         for (const i of data) {
             if(i.email===values.email&&i.password===values.password){
                 console.log("hello")
-                setContext(values)
+                // setinfo(values)
             }
         }
           alert(JSON.stringify(values, null, 2));
@@ -68,7 +67,7 @@ const LoginForm = () => {
         /* and other goodies */
       }) => (
         <form onSubmit={handleSubmit}>
-            <div>
+            <div >
             <label htmlFor='email'>ایمیل</label>
           <input
             type="email"

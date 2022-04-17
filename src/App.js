@@ -1,21 +1,20 @@
 import './App.css';
-import LoginForm from './components/LoginForm';
-import SignupForm from './components/SignupForm';
 import React from 'react';
-import { useState } from 'react';
-export const user = React.createContext({});
-
-function App() {
-  const {context, setContext} = useState({})
+import Tabs from './components/Tabs';
+import Hoc from './components/Hoc';
+function App({name, handleLogOut}) {
   return (
     <>
-    <user.Provider value={{context, setContext}}>
-    <LoginForm/>
-    <SignupForm/>
-      </user.Provider>
+    <div className="App">
+        <div className="helloUser">
+          <h1>سلام {name}</h1>
+          <button onClick={handleLogOut}>خروج از حساب</button>
+        </div>
+      </div>
+    
     
     </>
     );
 }
 
-export default App;
+export default Hoc( App);

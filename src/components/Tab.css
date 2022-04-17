@@ -1,0 +1,17 @@
+.tabcontainer{
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.container{
+    background-color: rgb(31, 68, 104);
+    max-width: 50%;
+    margin: 100px auto;
+    min-height: 300px;
+}
+.tab{
+    background-color: rgb(94, 197, 171);
+}
+span{
+    min-width: 50%;
+}
