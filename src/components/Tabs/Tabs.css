@@ -1,0 +1,111 @@
+.Forms {
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+    height: fit-content;
+    background-color: rgb(58, 57, 57);
+    padding: 1.3rem;
+    border-radius: 2px;
+    margin-top: 2.2rem;
+}
+
+.Forms-btns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.F-btn {
+    width: 50%;
+    cursor: pointer;
+    border: none;
+    padding: 0.5rem;
+    background-color: rgb(88, 87, 87);
+    color: rgb(185, 185, 185);
+    font-size: 1rem;
+}
+
+.activeBtn {
+    background-color: rgb(13, 179, 129);
+    color: #fff;
+}
+
+.form-header {
+    color: #fff;
+    text-align: center;
+    margin: 1.3rem 0;
+}
+
+.submit {
+    width: 100%;
+    padding: 0.6rem;
+    background-color: rgb(13, 179, 129);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: large;
+    margin-top: 1.5rem;
+}
+
+.container-width_50 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.width_50 {
+    width: calc(50% - 0.4rem) !important;
+    display: inline-block;
+}
+
+.field {
+    position: relative;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+input, select {
+    background-color: transparent;
+    border: 1px solid rgb(137, 146, 158) !important;
+    color: #fff !important;
+    font-size: 1rem;
+    outline: 0;
+    padding: 0.3rem 0.5rem;
+    width: 100%;
+}
+
+select option {
+    background-color: rgb(106, 103, 103);
+}
+
+input:focus {
+    color: #fff !important;
+}
+
+::placeholder {
+    color: rgb(137, 146, 158);
+}
+
+:-ms-input-placeholder {
+    color: rgb(137, 146, 158);
+}
+
+.error {
+    color: #d8607a;
+    font-size: 0.8rem;
+}
+
+.stylePass {
+    color: #fff;
+    position: absolute; 
+    top: 30%;
+    left: 0.5rem;
+    z-index: 100; 
+    cursor: pointer
+}
+
+.forgot {
+    color: rgb(12, 155, 112);
+    font-size: 0.72rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}

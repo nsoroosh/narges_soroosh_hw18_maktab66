@@ -1,40 +1,35 @@
-import React from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import { useFormik } from 'formik';
-import axios from "axios"
-import { useState,useEffect , useCallback } from 'react';
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
+import axios from 'axios'
 
 function validate(values) {
-  const errors = {};
-  if (!values.name) errors.name = 'این فیلد ضروری است'
-  if (!values.family) errors.family = 'این فیلد ضروری است'
-  if (!values.city) errors.city = 'این فیلد ضروری است'
-  if (!values.province) errors.province = 'این فیلد ضروری است'
-  if (values.education) {
-      if (!values.eduPlace) errors.eduPlace = 'این فیلد ضروری است'
-  }
-  if (!values.email) {
-      errors.email = 'این فیلد ضروری است';
-  } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-  ) {
-      errors.email = 'آدرس ایمیل نامعتبر است';
-  }
-  if(!values.password){
-      errors.password = 'این فیلد ضروری است'
-  }else if(values.password.length < 6){
-      errors.password = "رمز عبور وارد شده خیلی کوتاه هست"
-  }else if(values.password.length > 50) {
-      errors.password = "رمز عبور وارد شده خیلی بلند هست"
-  }
-  return errors;
+    const errors = {};
+    if (!values.name) errors.name = 'این فیلد ضروری است'
+    if (!values.family) errors.family = 'این فیلد ضروری است'
+    if (!values.city) errors.city = 'این فیلد ضروری است'
+    if (!values.province) errors.province = 'این فیلد ضروری است'
+    if (values.education) {
+        if (!values.eduPlace) errors.eduPlace = 'این فیلد ضروری است'
+    }
+    if (!values.email) {
+        errors.email = 'این فیلد ضروری است';
+    } else if (
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+    ) {
+        errors.email = 'آدرس ایمیل نامعتبر است';
+    }
+    if(!values.password){
+        errors.password = 'این فیلد ضروری است'
+    }else if(values.password.length < 6){
+        errors.password = "رمز عبور وارد شده خیلی کوتاه هست"
+    }else if(values.password.length > 50) {
+        errors.password = "رمز عبور وارد شده خیلی بلند هست"
+    }
+    return errors;
 }
 
-
-const SignupForm = () => {
-  
-  
-  
+const Register = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [eduPlaceShow, setEduPlaceShow] = useState(false)
     const [iranstates, setIranStates] = useState({})
@@ -47,36 +42,35 @@ const SignupForm = () => {
     )
 
     useEffect(() => {
-        axios.get("/iranstates.json")
+        axios.get("/db/iranstates.json")
             .then((res) => setIranStates(res.data))
             .catch((err) => console.log(err));
         return () => setIranStates([])
     }, [])
 
-  
-  
-  const formik = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
+    const formik = useFormik({
+        initialValues: {
+          name: '',
+          family: '',
+          email: '',
+          password: '',
           education: '',
           eduPlace: '',
           province: '',
           city: ''
-    },
-    validate: validate,
-    onSubmit:  async (values, { setSubmitting, resetForm }) => {
-      setSubmitting(false);
-      await axios.post('http://localhost:3001/users', values)
-          .catch(err => console.log(err))
-    },
-    
-  });
-  return (
-    
-    <form onSubmit={formik.handleSubmit}>
+        },
+        validate: validate,
+        onSubmit: async (values, { setSubmitting, resetForm }) => {
+            setSubmitting(false);
+            await axios.post('http://localhost:3001/users', values)
+                .catch(err => console.log(err))
+                .then(alert('ثبت نام شما با موفقیت انجام شد!'))
+            resetForm()
+        }
+      });
+
+      return (
+        <form onSubmit={formik.handleSubmit}>
         <div className='container-width_50'>
             <div className='field width_50'>
                 <input
@@ -212,8 +206,7 @@ const SignupForm = () => {
              ثبت نام
            </button>
         </form>
-  );
+      );
 }
 
-
-export default SignupForm
+export default Register;

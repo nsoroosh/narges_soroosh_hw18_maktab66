@@ -1,20 +1,16 @@
-import './App.css';
-import React from 'react';
-import Tabs from './components/Tabs';
-import Hoc from './components/Hoc';
+import React from "react";
+import WithCheckingLogin from "./components/HOC/Hoc";
+import './App.css'
+
 function App({name, handleLogOut}) {
-  return (
-    <>
-    <div className="App">
+    return (
+      <div className="App">
         <div className="helloUser">
           <h1>سلام {name}</h1>
           <button onClick={handleLogOut}>خروج از حساب</button>
         </div>
       </div>
-    
-    
-    </>
-    );
+    )
 }
 
-export default Hoc( App);
+export default WithCheckingLogin(App);
